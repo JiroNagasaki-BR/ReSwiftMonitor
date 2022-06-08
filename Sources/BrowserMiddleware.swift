@@ -8,7 +8,7 @@ public struct BrowserMiddleware {
         self.multipeerConnectivityWrapper = .init(serviceType: serviceType ?? Constants.defaultServiceType)
     }
     
-    public func make() -> Middleware<StateType> {
+    public func make() -> Middleware<Any> {
         return { dispatch, fetchState in
             return { next in
                 return { action in
@@ -19,7 +19,7 @@ public struct BrowserMiddleware {
         }
     }
     
-    private func send(state: StateType, action: Action) {
+    private func send(state: Any, action: Action) {
         let serializedState = MonitorSerialization.convertValueToDictionary(state)
         var serializedAction = MonitorSerialization.convertValueToDictionary(action)
         

@@ -9,7 +9,7 @@
 import Foundation
 import ReSwift
 
-struct AppState: StateType {
+struct AppState: Any {
     var counter: Int = 0
 }
 

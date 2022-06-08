@@ -39,7 +39,7 @@ public struct Configuration {
 }
 
 public struct MonitorMiddleware {
-    public static func make(configuration: Configuration) -> Middleware<StateType> {
+    public static func make(configuration: Configuration) -> Middleware<Any> {
         let queue = OperationQueue()
         queue.maxConcurrentOperationCount = 1
         queue.qualityOfService = .default
@@ -68,11 +68,11 @@ public struct MonitorMiddleware {
 }
 
 fileprivate class SendActionInfoOperation: Operation {
-    let state: StateType
+    let state: Any
     let action: Action
     unowned let client: ScClient
     
-    init(state: StateType, action: Action, client: ScClient) {
+    init(state: Any, action: Action, client: ScClient) {
         self.state = state
         self.action = action
         self.client = client
